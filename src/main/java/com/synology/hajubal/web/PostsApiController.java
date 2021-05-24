@@ -1,5 +1,6 @@
 package com.synology.hajubal.web;
 
+
 import com.synology.hajubal.service.PostsService;
 import com.synology.hajubal.web.dto.PostsResponseDto;
 import com.synology.hajubal.web.dto.PostsSaveRequestDto;
@@ -26,5 +27,12 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+
+        return id;
     }
 }
