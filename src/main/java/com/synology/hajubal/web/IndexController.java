@@ -1,5 +1,6 @@
 package com.synology.hajubal.web;
 
+import com.synology.hajubal.config.auth.dto.SessionUser;
 import com.synology.hajubal.service.PostsService;
 import com.synology.hajubal.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -8,15 +9,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
+    private final HttpSession httpSession;
     private final PostsService postsService;
 
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if(user != null)
+            model.addAttribute("userName", user.getName());
+
         return "index";
     }
 
@@ -31,5 +41,11 @@ public class IndexController {
         model.addAttribute("post", post);
 
         return "posts-update";
+    }
+
+    @GetMapping("/error")
+    public String error() {
+        System.out.println(">>>>>>>>> ERROR page call.");
+        return "errors/error";
     }
 }
