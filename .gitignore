@@ -4,4 +4,5 @@
 .idea
 /build/
 application-oauth.properties
+application-real-db.properties
 /logs/
