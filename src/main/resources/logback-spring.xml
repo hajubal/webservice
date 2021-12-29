@@ -3,8 +3,8 @@
     <springProfile name="local">
         <property resource="log/logback-local.properties"/>
     </springProfile>
-    <springProfile name="dev">
-        <property resource="log/logback-dev.properties"/>
+    <springProfile name="real">
+        <property resource="log/logback-real.properties"/>
     </springProfile> <!--Environment 내의 프로퍼티들을 개별적으로 설정할 수도 있다.-->
 
     <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/> <!-- log file path -->
