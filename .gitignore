@@ -6,3 +6,4 @@
 application-oauth.properties
 application-real-db.properties
 /logs/
+/out/
